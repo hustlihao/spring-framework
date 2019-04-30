@@ -17,10 +17,16 @@
 package org.springframework.context;
 
 /**
+ * 定义声明周期控制的接口
+ * 主要用于异步处理场景
+ * 该接口不会自动启动 如果希望组件自动启动 请使用SmartLifecycle接口
  * A common interface defining methods for start/stop lifecycle control.
  * The typical use case for this is to control asynchronous processing.
  * <b>NOTE: This interface does not imply specific auto-startup semantics.
  * Consider implementing {@link SmartLifecycle} for that purpose.</b>
+ *
+ * 实现类既可以是组件（例如bean） 也可以是容器（例如ApplicationContext）
+ * 容器的start/stop会调用其内所有组件的start/stop
  *
  * <p>Can be implemented by both components (typically a Spring bean defined in a
  * Spring context) and containers  (typically a Spring {@link ApplicationContext}
