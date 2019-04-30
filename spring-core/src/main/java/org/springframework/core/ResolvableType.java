@@ -42,6 +42,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * 对Java Type的封装 提供了更多丰富的接口 对泛型有更好的支持
  * Encapsulates a Java {@link java.lang.reflect.Type}, providing access to
  * {@link #getSuperType() supertypes}, {@link #getInterfaces() interfaces}, and
  * {@link #getGeneric(int...) generic parameters} along with the ability to ultimately
@@ -54,6 +55,7 @@ import org.springframework.util.StringUtils;
  * {@link ResolvableType ResolvableTypes}, allowing easy navigation. For example:
  * <pre class="code">
  * private HashMap&lt;Integer, List&lt;String&gt;&gt; myMap;
+ * HashMap<Integer, List<String>>
  *
  * public void example() {
  *     ResolvableType t = ResolvableType.forField(getClass().getDeclaredField("myMap"));

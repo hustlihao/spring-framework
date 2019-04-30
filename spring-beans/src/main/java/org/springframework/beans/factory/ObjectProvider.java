@@ -25,6 +25,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * ObjectFactory的变种，专门用于注入点
+ *
  * A variant of {@link ObjectFactory} designed specifically for injection points,
  * allowing for programmatic optionality and lenient not-unique handling.
  *
@@ -41,6 +43,7 @@ import org.springframework.lang.Nullable;
 public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
+	 * 返回一个实例，允许提供显示构造函数参数
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
 	 * <p>Allows for specifying explicit construction arguments, along the
@@ -53,6 +56,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	T getObject(Object... args) throws BeansException;
 
 	/**
+	 * 返回该工厂管理的实例，如果不可用返回null
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
 	 * @return an instance of the bean, or {@code null} if not available
@@ -63,6 +67,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	T getIfAvailable() throws BeansException;
 
 	/**
+	 * 返回该工厂管理的实例，如果没有则使用defaultSupplier回调创建
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
 	 * @param defaultSupplier a callback for supplying a default object
@@ -79,6 +84,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
+	 * 返回该工厂管理的实例，经dependencyConsumer处理 注意 该方法没有返回值
 	 * Consume an instance (possibly shared or independent) of the object
 	 * managed by this factory, if available.
 	 * @param dependencyConsumer a callback for processing the target object
@@ -95,6 +101,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
+	 * 返回唯一的实例，如果不可用或者不唯一（多个候选者且没有标记primary）则返回null
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
 	 * @return an instance of the bean, or {@code null} if not available or
@@ -106,6 +113,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	T getIfUnique() throws BeansException;
 
 	/**
+	 * 等价于在getIfUnique()返回为null时 通过defaultSupplier构造实例
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
 	 * @param defaultSupplier a callback for supplying a default object
@@ -123,6 +131,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
+	 * 等价于在getIfUnique()返回不为null时 使用dependencyConsumer处理 注意 该方法没有返回值
 	 * Consume an instance (possibly shared or independent) of the object
 	 * managed by this factory, if unique.
 	 * @param dependencyConsumer a callback for processing the target object
@@ -139,6 +148,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
+	 * 返回能遍历所有管理实例的迭代器
 	 * Return an {@link Iterator} over all matching object instances,
 	 * without specific ordering guarantees (but typically in registration order).
 	 * @since 5.1

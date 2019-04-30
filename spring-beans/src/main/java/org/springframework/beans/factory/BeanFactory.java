@@ -235,6 +235,7 @@ public interface BeanFactory {
 	<T> T getBean(Class<T> requiredType, Object... args) throws BeansException;
 
 	/**
+	 * 返回指定bean的provider-允许按需检索
 	 * Return an provider for the specified bean, allowing for lazy on-demand retrieval
 	 * of instances, including availability and uniqueness options.
 	 * @param requiredType type the bean must match; can be an interface or superclass
@@ -245,6 +246,7 @@ public interface BeanFactory {
 	<T> ObjectProvider<T> getBeanProvider(Class<T> requiredType);
 
 	/**
+	 * 同上
 	 * Return an provider for the specified bean, allowing for lazy on-demand retrieval
 	 * of instances, including availability and uniqueness options.
 	 * @param requiredType type the bean must match; can be a generic type declaration.
