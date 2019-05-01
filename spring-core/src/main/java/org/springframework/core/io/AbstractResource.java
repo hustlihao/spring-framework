@@ -31,8 +31,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ResourceUtils;
 
 /**
+ * Resource的基础实现抽象类 方便子类扩展
  * Convenience base class for {@link Resource} implementations,
  * pre-implementing typical behavior.
+ *
+ * exists方法会检查File或者InputStream能否被打开
+ * isOpen方法返回false
+ * getURL和getFile抛异常
+ * toString返回描述
  *
  * <p>The "exists" method will check whether a File or InputStream can
  * be opened; "isOpen" will always return false; "getURL" and "getFile"

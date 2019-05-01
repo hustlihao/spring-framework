@@ -28,6 +28,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
+ * 解决占位符的工具类
+ *
  * Utility class for working with Strings that have placeholder values in them. A placeholder takes the form
  * {@code ${name}}. Using {@code PropertyPlaceholderHelper} these placeholders can be substituted for
  * user-supplied values. <p> Values for substitution can be supplied using a {@link Properties} instance or
@@ -49,9 +51,14 @@ public class PropertyPlaceholderHelper {
 		wellKnownSimplePrefixes.put(")", "(");
 	}
 
-
+	/**
+	 * 占位符前缀
+	 */
 	private final String placeholderPrefix;
 
+	/**
+	 * 占位符后缀
+	 */
 	private final String placeholderSuffix;
 
 	private final String simplePrefix;
@@ -101,6 +108,8 @@ public class PropertyPlaceholderHelper {
 
 
 	/**
+	 * 占位符变量替换 使用指定的Properties
+	 *
 	 * Replaces all placeholders of format {@code ${name}} with the corresponding
 	 * property from the supplied {@link Properties}.
 	 * @param value the value containing the placeholders to be replaced
@@ -113,6 +122,8 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
+	 * 解决指定value中所有的占位符 这是Spring解决占位符的终极方法 使用placeholderResolver完成
+	 *
 	 * Replaces all placeholders of format {@code ${name}} with the value returned
 	 * from the supplied {@link PlaceholderResolver}.
 	 * @param value the value containing the placeholders to be replaced
@@ -214,6 +225,7 @@ public class PropertyPlaceholderHelper {
 	public interface PlaceholderResolver {
 
 		/**
+		 * 占位符变量替换 这里的placeholderName已经是拿掉前后缀的name了 例如${userName} 这里就是userName
 		 * Resolve the supplied placeholder name to the replacement value.
 		 * @param placeholderName the name of the placeholder to resolve
 		 * @return the replacement value, or {@code null} if no replacement is to be made

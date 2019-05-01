@@ -31,6 +31,7 @@ import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.PropertiesPersister;
 
 /**
+ * properties加载支持 支持配置重写
  * Base class for JavaBean-style components that need to load properties
  * from one or more resources. Supports local properties as well, with
  * configurable overriding.
@@ -166,6 +167,8 @@ public abstract class PropertiesLoaderSupport {
 	}
 
 	/**
+	 * 将locations中的资源全部加载到指定properties对象中
+	 *
 	 * Load properties into the given instance.
 	 * @param props the Properties instance to load into
 	 * @throws IOException in case of I/O errors

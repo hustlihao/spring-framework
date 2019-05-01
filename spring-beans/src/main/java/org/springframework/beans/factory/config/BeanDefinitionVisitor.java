@@ -30,6 +30,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * "横穿"BeanDefinition对象 主要用于访问属性值和构造函数参数值 进而解决元数据值
+ *  说白了 就是拿一个StringValueResolver对一个BeanDefinition各种扫，完成字符串值替换
+ *
  * Visitor class for traversing {@link BeanDefinition} objects, in particular
  * the property values and constructor argument values contained in them,
  * resolving bean metadata values.
@@ -76,14 +79,21 @@ public class BeanDefinitionVisitor {
 	 * @see #resolveStringValue(String)
 	 */
 	public void visitBeanDefinition(BeanDefinition beanDefinition) {
+		// 扫父BeanFactory的bean name
 		visitParentName(beanDefinition);
+		// 扫当前Bean的ClassName
 		visitBeanClassName(beanDefinition);
+		// 扫当前FactoryBean的name
 		visitFactoryBeanName(beanDefinition);
+		// 扫当前FactoryMethodName
 		visitFactoryMethodName(beanDefinition);
+		// 扫Scope
 		visitScope(beanDefinition);
+		// 扫属性值
 		if (beanDefinition.hasPropertyValues()) {
 			visitPropertyValues(beanDefinition.getPropertyValues());
 		}
+		// 扫构造函数参数值
 		if (beanDefinition.hasConstructorArgumentValues()) {
 			ConstructorArgumentValues cas = beanDefinition.getConstructorArgumentValues();
 			visitIndexedArgumentValues(cas.getIndexedArgumentValues());
@@ -169,12 +179,19 @@ public class BeanDefinitionVisitor {
 		}
 	}
 
+	/**
+	 * 处理值 总之就是遍历 扫个遍
+	 * @param value
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	@Nullable
 	protected Object resolveValue(@Nullable Object value) {
+		// 如果value是BeanDefinition 遍历再搞
 		if (value instanceof BeanDefinition) {
 			visitBeanDefinition((BeanDefinition) value);
 		}
+		// 如果value是BeanDefinitionHolder 遍历再搞
 		else if (value instanceof BeanDefinitionHolder) {
 			visitBeanDefinition(((BeanDefinitionHolder) value).getBeanDefinition());
 		}
@@ -198,6 +215,7 @@ public class BeanDefinitionVisitor {
 				return new RuntimeBeanNameReference(newBeanName);
 			}
 		}
+		// 如果是数组 数组中每个对象都处理一遍
 		else if (value instanceof Object[]) {
 			visitArray((Object[]) value);
 		}

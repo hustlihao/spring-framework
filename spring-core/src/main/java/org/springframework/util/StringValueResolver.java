@@ -34,7 +34,8 @@ import org.springframework.lang.Nullable;
 public interface StringValueResolver {
 
 	/**
-	 * 例如placeholders占位符的解析
+	 * 例如placeholders占位符的解析 这里的strVal是带前后缀的 例如${userName}
+	 *
 	 * Resolve the given String value, for example parsing placeholders.
 	 * @param strVal the original String value (never {@code null})
 	 * @return the resolved String value (may be {@code null} when resolved to a null

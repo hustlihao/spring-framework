@@ -22,6 +22,8 @@ import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 
 /**
+ * 可写入的资源接口
+ *
  * Extended interface for a resource that supports writing to it.
  * Provides an {@link #getOutputStream() OutputStream accessor}.
  *
@@ -32,6 +34,9 @@ import java.nio.channels.WritableByteChannel;
 public interface WritableResource extends Resource {
 
 	/**
+	 * 标识该资源是否可写入
+	 * 返回true 实际写入时也可能会失败
+	 *
 	 * Indicate whether the contents of this resource can be written
 	 * via {@link #getOutputStream()}.
 	 * <p>Will be {@code true} for typical resource descriptors;

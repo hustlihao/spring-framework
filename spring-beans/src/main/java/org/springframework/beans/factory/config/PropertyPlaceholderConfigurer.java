@@ -235,7 +235,9 @@ public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport 
 		}
 	}
 
-
+	/**
+	 * 使用Properties进行变量替换 如果指定的Properties中找不到 则去系统变量中寻找(默认)
+	 */
 	private final class PropertyPlaceholderConfigurerResolver implements PlaceholderResolver {
 
 		private final Properties props;

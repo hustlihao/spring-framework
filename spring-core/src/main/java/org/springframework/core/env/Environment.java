@@ -17,10 +17,16 @@
 package org.springframework.core.env;
 
 /**
+ * 当前Application运行环境接口
+ * 环境包括两部分内容：profiles和properties
+ *
  * Interface representing the environment in which the current application is running.
  * Models two key aspects of the application environment: <em>profiles</em> and
  * <em>properties</em>. Methods related to property access are exposed via the
  * {@link PropertyResolver} superinterface.
+ *
+ *
+ * profile可以通过xml配置文件定义 也可以通过注解标识
  *
  * <p>A <em>profile</em> is a named, logical group of bean definitions to be registered
  * with the container only if the given profile is <em>active</em>. Beans may be assigned
@@ -31,6 +37,8 @@ package org.springframework.core.env;
  * active}, and which profiles (if any) should be {@linkplain #getDefaultProfiles active
  * by default}.
  *
+ * properties在几乎所有应用中都至关重要，来源有很多种：配置文件、JVM环境变量、系统环境变量、JNDI
+ * ，servlet上下文参数，ad-hoc配置对象、Map等等
  * <p><em>Properties</em> play an important role in almost all applications, and may
  * originate from a variety of sources: properties files, JVM system properties, system
  * environment variables, JNDI, servlet context parameters, ad-hoc Properties objects,

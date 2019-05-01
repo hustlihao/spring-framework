@@ -17,6 +17,9 @@
 package org.springframework.core.io;
 
 /**
+ * Resource的扩展接口 主要用于从封闭的Context中加载资源 例如ServletContext
+ * 也可以从简单的classpath或者相对文件路径中加载资源(没有前缀)
+ *
  * Extended interface for a resource that is loaded from an enclosing
  * 'context', e.g. from a {@link javax.servlet.ServletContext} but also
  * from plain classpath paths or relative file system paths (specified

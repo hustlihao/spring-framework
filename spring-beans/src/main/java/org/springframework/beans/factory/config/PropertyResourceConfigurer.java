@@ -124,6 +124,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	}
 
 	/**
+	 * 预留扩展点 可以基于properties的原始值返回新值 用于对原始值进行加工
+	 *
 	 * Convert the given property value from the properties source to the value
 	 * which should be applied.
 	 * <p>The default implementation simply returns the original value.
@@ -143,6 +145,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 
 
 	/**
+	 * 留给子类实现 将属性应用到指定的BeanFactory中
+	 *
 	 * Apply the given Properties to the given BeanFactory.
 	 * @param beanFactory the BeanFactory used by the application context
 	 * @param props the Properties to apply

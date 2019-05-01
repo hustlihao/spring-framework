@@ -17,6 +17,9 @@
 package org.springframework.core;
 
 /**
+ * 有序接口
+ * 值越低优先级越高
+ *
  * {@code Ordered} is an interface that can be implemented by objects that
  * should be <em>orderable</em>, for example in a {@code Collection}.
  *

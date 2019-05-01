@@ -265,6 +265,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 
 
 	/**
+	 * 解决属性name到value的映射 子类实现
 	 * Retrieve the specified property as a raw String,
 	 * i.e. without resolution of nested placeholders.
 	 * @param key the property name to resolve

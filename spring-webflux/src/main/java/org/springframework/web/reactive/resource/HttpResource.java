@@ -20,6 +20,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
 /**
+ * Http资源接口
+ *
  * Extended interface for a {@link Resource} to be written to an
  * HTTP response.
  *

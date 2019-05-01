@@ -24,6 +24,9 @@ import java.io.Writer;
 import java.util.Properties;
 
 /**
+ * properties持久化接口
+ * 提供可插拔解析策略
+ *
  * Strategy interface for persisting {@code java.util.Properties},
  * allowing for pluggable parsing strategies.
  *
