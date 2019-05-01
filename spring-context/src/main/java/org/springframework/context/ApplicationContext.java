@@ -25,7 +25,13 @@ import org.springframework.lang.Nullable;
 
 /**
  * 只读ApplicationContext接口
- * 在BeanFactory基础上增加了
+ * 在BeanFactory基础上增加了Environment、MessageSource、EventPublisher和ResourcePatterResolver
+ * Environment 环境相关
+ * MessageSource 国际化
+ * EventPublisher 事件发布
+ * ResourcePatterResolver 资源获取
+ *
+ * ApplicationContext本身的方法并不多
  *
  * Central interface to provide configuration for an application.
  * This is read-only while the application is running, but may be

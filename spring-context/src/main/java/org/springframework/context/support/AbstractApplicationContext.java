@@ -1365,6 +1365,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	//---------------------------------------------------------------------
 
 	/**
+	 * 子类需要加载配置 要么创建一个BeanFactory 要么返回一个BeanFactory
+	 *
 	 * Subclasses must implement this method to perform the actual configuration load.
 	 * The method is invoked by {@link #refresh()} before any other initialization work.
 	 * <p>A subclass will either create a new bean factory and hold a reference to it,
@@ -1384,6 +1386,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	protected abstract void closeBeanFactory();
 
 	/**
+	 * 子类需要返回其内部BeanFactory 子类需要在返回BeanFactory之前检查ApplicationContext是否为active
+	 * 一旦context关闭 该BeanFactory不可用，此时调用该方法会抛IllegalStateException
+	 *
 	 * Subclasses must return their internal bean factory here. They should implement the
 	 * lookup efficiently, so that it can be called repeatedly without a performance penalty.
 	 * <p>Note: Subclasses should check whether the context is still active before
