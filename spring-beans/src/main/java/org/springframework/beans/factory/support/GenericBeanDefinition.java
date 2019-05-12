@@ -20,6 +20,9 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.lang.Nullable;
 
 /**
+ * GenericBeanDefinition为标准bean definition提供一站式服务
+ * 一般来说使用该类注册用户可见的bean definition
+ *
  * GenericBeanDefinition is a one-stop shop for standard bean definition purposes.
  * Like any bean definition, it allows for specifying a class plus optionally
  * constructor argument values and property values. Additionally, deriving from a

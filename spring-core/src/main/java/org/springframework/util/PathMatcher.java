@@ -20,6 +20,8 @@ import java.util.Comparator;
 import java.util.Map;
 
 /**
+ * 字符串路径匹配接口
+ *
  * Strategy interface for {@code String}-based path matching.
  *
  * <p>Used by {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},

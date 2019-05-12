@@ -56,6 +56,14 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ *
+ * 源数据路径可以是简单路径-唯一对应一个目标资源 或者是包括classpath*:前缀，还可以是内部Ant风格
+ * 正则表达式，后面两个都是有效的通配符
+ * 该类通过持有一个ResourceLoader对象来支持ResourceLoader的方法访问
+ *
+ * 对于无通配符的情况：
+ * 直接调用ResourceLoader的getResource方法获取单个资源对象
+ *
  * A {@link ResourcePatternResolver} implementation that is able to resolve a
  * specified resource location path into one or more matching Resources.
  * The source path may be a simple path which has a one-to-one mapping to a

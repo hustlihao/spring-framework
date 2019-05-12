@@ -23,6 +23,12 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
+ * 相比BeanPostProcessor 该接口给了用户在填充Bean属性值或者自动注入前回调的机会
+ *
+ * 一般来说该接口用于改变Bean的默认初始化行为 比如为Bean创建一个代理对象或者执行额外的注入行为
+ *
+ * 该接口一般用于框架内部使用 推荐实现BeanPostProcessor或者InstantiationAwareBeanPostProcessorAdapter接口
+ *
  * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
  * and a callback after instantiation but before explicit properties are set or
  * autowiring occurs.
@@ -47,6 +53,12 @@ import org.springframework.lang.Nullable;
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 
 	/**
+	 * Bean初始化前的回调
+	 *
+	 * 返回值可能是个代理对象
+	 *
+	 * 如果返回值不为null，接下来的InstantiationAwareBeanPostProcessor不会被执行
+	 *
 	 * Apply this BeanPostProcessor <i>before the target bean gets instantiated</i>.
 	 * The returned bean object may be a proxy to use instead of the target bean,
 	 * effectively suppressing default instantiation of the target bean.
@@ -74,6 +86,12 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
+	 * Bean初始化后 属性未注入前的回调 用于在Spring自动注入前做一些事情
+	 *
+	 * 如果该方法返回false则Spring自动注入将会被跳过（不执行注入操作）
+	 *
+	 * 默认返回true
+	 *
 	 * Perform operations after the bean has been instantiated, via a constructor or factory method,
 	 * but before Spring property population (from explicit properties or autowiring) occurs.
 	 * <p>This is the ideal callback for performing custom field injection on the given bean
@@ -93,6 +111,10 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
+	 * 在Factory解决Bean的属性值前给用户机会去修改属性值
+	 *
+	 * 如果返回null 则会继续调用postProcessPropertyValues方法 默认等同于使用原来的PropertyValues
+	 *
 	 * Post-process the given property values before the factory applies them
 	 * to the given bean, without any need for property descriptors.
 	 * <p>Implementations should return {@code null} (the default) if they provide a custom
@@ -118,6 +140,8 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
+	 * 在Bean属性处理前回调。可以用于检查所有的依赖是否满足，例如Required标识的属性值
+	 *
 	 * Post-process the given property values before the factory applies them
 	 * to the given bean. Allows for checking whether all dependencies have been
 	 * satisfied, for example based on a "Required" annotation on bean property setters.

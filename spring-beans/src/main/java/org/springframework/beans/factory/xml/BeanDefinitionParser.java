@@ -22,6 +22,9 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于解析<beans/>节点下用户自定义标签
+ * 被DefaultBeanDefinitionDocumentReader调用
+ *
  * Interface used by the {@link DefaultBeanDefinitionDocumentReader} to handle custom,
  * top-level (directly under {@code <beans/>}) tags.
  *

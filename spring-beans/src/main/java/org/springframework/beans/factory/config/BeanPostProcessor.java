@@ -20,6 +20,12 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于自定义修改新的Bean实例的钩子接口
+ *
+ * ApplicationContexts能自动检测BeanPostProcessor Beans
+ *
+ * 每实例化一个Bean时 会执行一次所有的BeanPostProcessor
+ *
  * Factory hook that allows for custom modification of new bean instances,
  * e.g. checking for marker interfaces or wrapping them with proxies.
  *
@@ -43,6 +49,12 @@ import org.springframework.lang.Nullable;
 public interface BeanPostProcessor {
 
 	/**
+	 *
+	 * bean已经被填充好属性值了
+	 * 返回的bean可能是包装后的bean 也可能是原始的bean
+	 *
+	 * 如果返回null，则后续的BeanPostProcessor不会被执行
+	 *
 	 * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
@@ -61,6 +73,18 @@ public interface BeanPostProcessor {
 	}
 
 	/**
+	 * bean已经被填充好属性值了
+	 *
+	 * 如果返回null，则后续的BeanPostProcessor不会被执行
+	 *
+	 * 返回的bean可能是包装后的bean 也可能是原始的bean
+	 *
+	 * 如果是FactoryBean 则它实例化或者它创建的对象实例化时该方法都会被调用
+	 *
+	 * 该方法会被InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation的方法调用
+	 *
+	 *
+	 *
 	 * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.

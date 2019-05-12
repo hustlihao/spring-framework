@@ -127,6 +127,9 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	//-------------------------------------------------------------------------
 
 	/**
+	 * 创建一个新的bean实例
+	 * 完全初始化 包括BeanPostProcessor
+	 * 但是不会基于name或者type注入属性
 	 * Fully create a new bean instance of the given class.
 	 * <p>Performs full initialization of the bean, including all applicable
 	 * {@link BeanPostProcessor BeanPostProcessors}.
