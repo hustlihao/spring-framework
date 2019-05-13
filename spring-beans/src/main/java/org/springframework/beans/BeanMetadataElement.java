@@ -19,6 +19,9 @@ package org.springframework.beans;
 import org.springframework.lang.Nullable;
 
 /**
+ * 该接口用于bean的源数据元素来实现
+ * 包含一个配置源对象
+ *
  * Interface to be implemented by bean metadata elements
  * that carry a configuration source object.
  *

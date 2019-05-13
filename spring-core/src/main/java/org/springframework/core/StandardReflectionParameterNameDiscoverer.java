@@ -23,6 +23,8 @@ import java.lang.reflect.Parameter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 标准反射获取参数名称 利用JDK8的反射机制获取参数名（基于-parameters编译器标识）
+ *
  * {@link ParameterNameDiscoverer} implementation which uses JDK 8's reflection facilities
  * for introspecting parameter names (based on the "-parameters" compiler flag).
  *

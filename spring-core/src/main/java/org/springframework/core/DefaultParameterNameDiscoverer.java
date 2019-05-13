@@ -17,6 +17,8 @@
 package org.springframework.core;
 
 /**
+ * ParameterNameDiscoverer的默认实现类
+ *
  * Default implementation of the {@link ParameterNameDiscoverer} strategy interface,
  * using the Java 8 standard reflection mechanism (if available), and falling back
  * to the ASM-based {@link LocalVariableTableParameterNameDiscoverer} for checking

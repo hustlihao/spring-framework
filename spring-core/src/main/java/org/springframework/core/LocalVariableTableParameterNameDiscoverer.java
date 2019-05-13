@@ -39,6 +39,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
+ * 利用LocalVariableTable发现参数名称
+ *
  * Implementation of {@link ParameterNameDiscoverer} that uses the LocalVariableTable
  * information in the method attributes to discover parameter names. Returns
  * {@code null} if the class file was compiled without debug information.

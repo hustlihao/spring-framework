@@ -24,6 +24,10 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
+ * 一系列ParameterNameDiscoverer的链式调用（包含优先级）
+ * 最先加入的ParameterNameDiscoverer拥有最高优先级(其实就是一个LinkedList)
+ * 任何一个返回null，则尝试下一个
+ *
  * {@link ParameterNameDiscoverer} implementation that tries several discoverer
  * delegates in succession. Those added first in the {@code addDiscoverer} method
  * have highest priority. If one returns {@code null}, the next will be tried.

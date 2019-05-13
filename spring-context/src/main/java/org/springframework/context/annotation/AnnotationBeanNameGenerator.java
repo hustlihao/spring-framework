@@ -32,6 +32,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * 为注解标识的bean生成name
+ *
  * {@link org.springframework.beans.factory.support.BeanNameGenerator}
  * implementation for bean classes annotated with the
  * {@link org.springframework.stereotype.Component @Component} annotation
@@ -146,6 +148,8 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 
 	/**
+	 * 为注解标识的类生成默认名称
+	 * 内部类的bean name形如outerClassName.InnerClassName 通过名称注入时需要注意这点
 	 * Derive a default bean name from the given bean definition.
 	 * <p>The default implementation simply builds a decapitalized version
 	 * of the short class name: e.g. "mypackage.MyJdbcDao" -> "myJdbcDao".

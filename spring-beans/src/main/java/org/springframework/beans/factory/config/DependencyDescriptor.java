@@ -43,6 +43,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 即将被注入的特殊依赖描述符
+ *
+ * 用于包装构造函数、方法参数或者是field，对外提供统一访问元数据的方法
+ *
  * Descriptor for a specific dependency that is about to be injected.
  * Wraps a constructor parameter, a method parameter or a field,
  * allowing unified access to their metadata.
@@ -381,6 +385,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
+	 * 返回包装参数、field的真实类型（非泛型）
+	 *
 	 * Determine the declared (non-generic) type of the wrapped parameter/field.
 	 * @return the declared type (never {@code null})
 	 */

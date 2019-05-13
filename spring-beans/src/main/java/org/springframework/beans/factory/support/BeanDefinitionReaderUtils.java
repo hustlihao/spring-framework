@@ -88,6 +88,8 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
+	 * 构造bean definition的name bean factory唯一
+	 *
 	 * Generate a bean name for the given bean definition, unique within the
 	 * given bean factory.
 	 * @param definition the bean definition to generate a bean name for
@@ -107,9 +109,11 @@ public abstract class BeanDefinitionReaderUtils {
 		String generatedBeanName = definition.getBeanClassName();
 		if (generatedBeanName == null) {
 			if (definition.getParentName() != null) {
+				// 如果bean的className为空 父类不为空 则用父类拼接
 				generatedBeanName = definition.getParentName() + "$child";
 			}
 			else if (definition.getFactoryBeanName() != null) {
+				// 如果父类为空 自己的factoryBeanName不为空 则用factoryBeanName拼接
 				generatedBeanName = definition.getFactoryBeanName() + "$created";
 			}
 		}
@@ -121,6 +125,7 @@ public abstract class BeanDefinitionReaderUtils {
 		String id = generatedBeanName;
 		if (isInnerBean) {
 			// Inner bean: generate identity hashcode suffix.
+			// 如果是内部bean 还需要拼接上#
 			id = generatedBeanName + GENERATED_BEAN_NAME_SEPARATOR + ObjectUtils.getIdentityHexString(definition);
 		}
 		else {
@@ -131,6 +136,8 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
+	 * 返回bean factory中唯一的name 如果给定的beanName已经存在 那就在后面加数字
+	 *
 	 * Turn the given bean name into a unique bean name for the given bean factory,
 	 * appending a unique counter as suffix if necessary.
 	 * @param beanName the original bean name
