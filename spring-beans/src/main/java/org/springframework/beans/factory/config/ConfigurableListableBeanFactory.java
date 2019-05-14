@@ -149,6 +149,9 @@ public interface ConfigurableListableBeanFactory
 	boolean isConfigurationFrozen();
 
 	/**
+	 * 这里初始化的单例
+	 * 通过registerSingleton直接注册的单例会调用SmartInitializingSingleton#afterSingletonsInstantiated（如果实现了该接口）
+	 *
 	 * Ensure that all non-lazy-init singletons are instantiated, also considering
 	 * {@link org.springframework.beans.factory.FactoryBean FactoryBeans}.
 	 * Typically invoked at the end of factory setup, if desired.
