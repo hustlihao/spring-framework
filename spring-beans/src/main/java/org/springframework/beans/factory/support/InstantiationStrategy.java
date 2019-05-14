@@ -24,6 +24,8 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.lang.Nullable;
 
 /**
+ * 通过RootBeanDefinition实例化一个Bean对象的接口 这是Spring容器最终实例化Bean的入口
+ *
  * Interface responsible for creating instances corresponding to a root bean definition.
  *
  * <p>This is pulled out into a strategy as various approaches are possible,

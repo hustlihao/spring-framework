@@ -59,6 +59,8 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	 *
 	 * 如果返回值不为null，接下来的InstantiationAwareBeanPostProcessor不会被执行
 	 *
+	 * 其返回值将被作为BeanPostProcessor#postProcessBeforeInitialization的bean入参
+	 *
 	 * Apply this BeanPostProcessor <i>before the target bean gets instantiated</i>.
 	 * The returned bean object may be a proxy to use instead of the target bean,
 	 * effectively suppressing default instantiation of the target bean.

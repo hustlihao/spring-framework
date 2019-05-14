@@ -39,6 +39,10 @@ import org.springframework.util.StringUtils;
 
 /**
  * 默认单例Bean注册器
+ * 除了通过指定的BeanFactory来创建单例外，不会负责单例的创建工作 大部分功能只是简单的管理单例
+ *
+ * 另外 其持有的Map都是以name作为key 因此只适合用于通过name获取单例
+ *
  * Generic registry for shared bean instances, implementing the
  * {@link org.springframework.beans.factory.config.SingletonBeanRegistry}.
  * Allows for registering singleton instances that should be shared
