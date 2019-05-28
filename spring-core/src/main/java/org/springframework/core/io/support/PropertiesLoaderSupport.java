@@ -147,22 +147,25 @@ public abstract class PropertiesLoaderSupport {
 	protected Properties mergeProperties() throws IOException {
 		Properties result = new Properties();
 
+		// 如果localOverride为true 先将location中的属性加载到result中
 		if (this.localOverride) {
 			// Load properties from file upfront, to let local properties override.
 			loadProperties(result);
 		}
 
+		// 将localProperties全部加载到result中
 		if (this.localProperties != null) {
 			for (Properties localProp : this.localProperties) {
 				CollectionUtils.mergePropertiesIntoMap(localProp, result);
 			}
 		}
-
+		// 如果localOverride为false 将location中的属性加载到result中
 		if (!this.localOverride) {
 			// Load properties from file afterwards, to let those properties override.
 			loadProperties(result);
 		}
-
+		// 当localOverride为true时，localProperties能覆盖掉location中同名属性值
+		// 当localOverride为false时，location能覆盖掉localProperties中同名属性值
 		return result;
 	}
 
