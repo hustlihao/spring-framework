@@ -23,6 +23,10 @@ import org.springframework.lang.Nullable;
 
 /**
  * 读取BeanDefinition配置信息
+ * 其对应的实现类有三个
+ * GroovyBeanDefinitionReader 从groovy文件读取bean定义
+ * PropertiesBeanDefinitionReader 从配置文件中读取bean定义
+ * XmlBeanDefinitionReader 从xml中读取bean定义 这个比较常见
  *
  * Simple interface for bean definition readers.
  * Specifies load methods with Resource and String location parameters.

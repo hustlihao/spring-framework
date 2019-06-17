@@ -19,6 +19,8 @@ package org.springframework.aop;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于AOP调用中获取原始对象
+ *
  * A {@code TargetSource} is used to obtain the current "target" of
  * an AOP invocation, which will be invoked via reflection if no around
  * advice chooses to end the interceptor chain itself.

@@ -17,6 +17,8 @@
 package org.springframework.transaction;
 
 /**
+ * 保存点管理器
+ *
  * Interface that specifies an API to programmatically manage transaction
  * savepoints in a generic fashion. Extended by TransactionStatus to
  * expose savepoint management functionality for a specific transaction.

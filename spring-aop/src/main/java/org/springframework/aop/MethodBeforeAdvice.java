@@ -21,6 +21,9 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
+ * 方法调用前被调用的织入行为
+ * 该类织入行为不能阻止方法的调用 除非抛异常
+ *
  * Advice invoked before a method is invoked. Such advices cannot
  * prevent the method call proceeding, unless they throw a Throwable.
  *

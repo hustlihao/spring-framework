@@ -19,6 +19,8 @@ package org.springframework.aop.framework;
 import org.springframework.lang.Nullable;
 
 /**
+ * 创建代理类接口 一个类对应一个AopProxy
+ *
  * Delegate interface for a configured AOP proxy, allowing for the creation
  * of actual proxy objects.
  *

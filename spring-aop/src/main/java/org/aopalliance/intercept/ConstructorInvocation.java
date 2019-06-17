@@ -19,6 +19,8 @@ package org.aopalliance.intercept;
 import java.lang.reflect.Constructor;
 
 /**
+ * 构造函数调用
+ *
  * Description of an invocation to a constructor, given to an
  * interceptor upon constructor-call.
  *

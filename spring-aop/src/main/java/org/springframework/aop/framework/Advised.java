@@ -23,6 +23,11 @@ import org.springframework.aop.TargetClassAware;
 import org.springframework.aop.TargetSource;
 
 /**
+ * 代理类工厂配置信息接口
+ * 包含了Interceptor和其它advice，Advisor和代理接口
+ *
+ * 任何Spring AOP代理对象都能转化成该接口
+ *
  * Interface to be implemented by classes that hold the configuration
  * of a factory of AOP proxies. This configuration includes the
  * Interceptors and other advice, Advisors, and the proxied interfaces.
@@ -38,29 +43,39 @@ import org.springframework.aop.TargetSource;
 public interface Advised extends TargetClassAware {
 
 	/**
+	 * 是否冻结配置 冻结后保证advice不会vein修改
+	 *
 	 * Return whether the Advised configuration is frozen,
 	 * in which case no advice changes can be made.
 	 */
 	boolean isFrozen();
 
 	/**
+	 * 代理整个类还是只是代理接口
+	 *
 	 * Are we proxying the full target class instead of specified interfaces?
 	 */
 	boolean isProxyTargetClass();
 
 	/**
+	 * 被代理的接口
+	 *
 	 * Return the interfaces proxied by the AOP proxy.
 	 * <p>Will not include the target class, which may also be proxied.
 	 */
 	Class<?>[] getProxiedInterfaces();
 
 	/**
+	 * 返回指定接口是否被代理
+	 *
 	 * Determine whether the given interface is proxied.
 	 * @param intf the interface to check
 	 */
 	boolean isInterfaceProxied(Class<?> intf);
 
 	/**
+	 * 修改TargetSource 未被冻结时才有用
+	 *
 	 * Change the {@code TargetSource} used by this {@code Advised} object.
 	 * <p>Only works if the configuration isn't {@linkplain #isFrozen frozen}.
 	 * @param targetSource new TargetSource to use
@@ -73,6 +88,8 @@ public interface Advised extends TargetClassAware {
 	TargetSource getTargetSource();
 
 	/**
+	 * 是否使用AopContext中的ThreadLocal对象保存代理对象 同类中调用不走代理 如果要走代理可以通过该ThreadLocal获取
+	 *
 	 * Set whether the proxy should be exposed by the AOP framework as a
 	 * {@link ThreadLocal} for retrieval via the {@link AopContext} class.
 	 * <p>It can be necessary to expose the proxy if an advised object needs
@@ -93,6 +110,8 @@ public interface Advised extends TargetClassAware {
 	boolean isExposeProxy();
 
 	/**
+	 * 为true时会跳过ClassFilter的检查 默认false
+	 *
 	 * Set whether this proxy configuration is pre-filtered so that it only
 	 * contains applicable advisors (matching this proxy's target class).
 	 * <p>Default is "false". Set this to "true" if the advisors have been
@@ -109,6 +128,8 @@ public interface Advised extends TargetClassAware {
 	boolean isPreFiltered();
 
 	/**
+	 * 返回代理类上的Advisor
+	 *
 	 * Return the advisors applying to this proxy.
 	 * @return a list of Advisors applying to this proxy (never {@code null})
 	 */
@@ -171,6 +192,8 @@ public interface Advised extends TargetClassAware {
 	boolean replaceAdvisor(Advisor a, Advisor b) throws AopConfigException;
 
 	/**
+	 * 添加Advice 会被包装成DefaultPointcutAdvisor对象 其中Pointcut为true
+	 *
 	 * Add the given AOP Alliance advice to the tail of the advice (interceptor) chain.
 	 * <p>This will be wrapped in a DefaultPointcutAdvisor with a pointcut that always
 	 * applies, and returned from the {@code getAdvisors()} method in this wrapped form.

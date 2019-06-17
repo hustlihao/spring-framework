@@ -26,6 +26,8 @@ import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.util.Assert;
 
 /**
+ * 将MethodBeforeAdvice包装成Interceptor
+ *
  * Interceptor to wrap am {@link org.springframework.aop.MethodBeforeAdvice}.
  * Used internally by the AOP framework; application developers should not need
  * to use this class directly.

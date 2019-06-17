@@ -26,11 +26,18 @@ import java.lang.reflect.Method;
  * also makes arguments for a particular call available, and any effects of running
  * previous advice applying to the joinpoint.
  *
+ * 如果isRuntime方法返回false  意味着对于同一方法不管调用多少次 match返回结果一致
+ *
+ * 只有静态匹配满足了 才有资格继续判断动态匹配 而且是在isRuntime返回true的情况下才会进行动态匹配
+ *
  * <p>If an implementation returns {@code false} from its {@link #isRuntime()}
  * method, evaluation can be performed statically, and the result will be the same
  * for all invocations of this method, whatever their arguments. This means that
  * if the {@link #isRuntime()} method returns {@code false}, the 3-arg
  * {@link #matches(java.lang.reflect.Method, Class, Object[])} method will never be invoked.
+ *
+ *
+ * 前置拦截器如果修改了调用参数 可能会影响动态匹配的结果
  *
  * <p>If an implementation returns {@code true} from its 2-arg
  * {@link #matches(java.lang.reflect.Method, Class)} method and its {@link #isRuntime()} method
@@ -40,6 +47,9 @@ import java.lang.reflect.Method;
  * in an interceptor chain, will have run, so any state changes they have produced in
  * parameters or ThreadLocal state will be available at the time of evaluation.
  *
+ *
+ * 可以分别基于StaticMethodMatcher和DynamicMethodMatcher定义静态和动态MethodMatcher
+ *
  * @author Rod Johnson
  * @since 11.11.2003
  * @see Pointcut
@@ -48,6 +58,8 @@ import java.lang.reflect.Method;
 public interface MethodMatcher {
 
 	/**
+	 * 静态匹配检查
+	 *
 	 * Perform static checking whether the given method matches.
 	 * <p>If this returns {@code false} or if the {@link #isRuntime()}
 	 * method returns {@code false}, no runtime check (i.e. no
@@ -60,6 +72,9 @@ public interface MethodMatcher {
 	boolean matches(Method method, Class<?> targetClass);
 
 	/**
+	 * 是否为动态匹配
+	 * 动态匹配时会利用运行时参数进行判断 而静态匹配则使用静态数据进行判断
+	 *
 	 * Is this MethodMatcher dynamic, that is, must a final call be made on the
 	 * {@link #matches(java.lang.reflect.Method, Class, Object[])} method at
 	 * runtime even if the 2-arg matches method returns {@code true}?
@@ -72,6 +87,8 @@ public interface MethodMatcher {
 	boolean isRuntime();
 
 	/**
+	 * 如果是动态匹配则调用该方法 而且需要在满足静态匹配后调用
+	 *
 	 * Check whether there a runtime (dynamic) match for this method,
 	 * which must have matched statically.
 	 * <p>This method is invoked only if the 2-arg matches method returns

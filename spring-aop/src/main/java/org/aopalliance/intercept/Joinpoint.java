@@ -19,6 +19,12 @@ package org.aopalliance.intercept;
 import java.lang.reflect.AccessibleObject;
 
 /**
+ * 织入点抽象接口
+ *
+ * 方法是静态织入点 调用则是方法的动态织入点
+ *
+ * 可以调用getStaticPart方法获取静态部分信息
+ *
  * This interface represents a generic runtime joinpoint (in the AOP
  * terminology).
  *
@@ -27,6 +33,8 @@ import java.lang.reflect.AccessibleObject;
  * invocation is the runtime joinpoint on a method (static joinpoint).
  * The static part of a given joinpoint can be generically retrieved
  * using the {@link #getStaticPart()} method.
+ *
+ * 一个运行时动态织入点是对方法、构造函数和属性等静态织入点的调用
  *
  * <p>In the context of an interception framework, a runtime joinpoint
  * is then the reification of an access to an accessible object (a
@@ -40,6 +48,7 @@ import java.lang.reflect.AccessibleObject;
 public interface Joinpoint {
 
 	/**
+	 * 继续下一个调用链中的interceptor
 	 * Proceed to the next interceptor in the chain.
 	 * <p>The implementation and the semantics of this method depends
 	 * on the actual joinpoint type (see the children interfaces).
@@ -49,6 +58,8 @@ public interface Joinpoint {
 	Object proceed() throws Throwable;
 
 	/**
+	 * 返回持有当前织入点静态部分的对象
+	 *
 	 * Return the object that holds the current joinpoint's static part.
 	 * <p>For instance, the target object for an invocation.
 	 * @return the object (can be null if the accessible object is static)

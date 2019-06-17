@@ -30,6 +30,8 @@ import org.springframework.lang.Nullable;
 public interface AdvisorChainFactory {
 
 	/**
+	 * 根据指定的Advisor获取MethodInterceptor
+	 *
 	 * Determine a list of {@link org.aopalliance.intercept.MethodInterceptor} objects
 	 * for the given advisor chain configuration.
 	 * @param config the AOP configuration in the form of an Advised object

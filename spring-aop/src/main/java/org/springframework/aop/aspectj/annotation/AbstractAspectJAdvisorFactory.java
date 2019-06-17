@@ -162,6 +162,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 
 
 	/**
+	 * 将AspectJ的注解映射为Spring的枚举类型
 	 * Class modelling an AspectJ annotation, exposing its type enumeration and
 	 * pointcut String.
 	 * @param <A> the annotation type
