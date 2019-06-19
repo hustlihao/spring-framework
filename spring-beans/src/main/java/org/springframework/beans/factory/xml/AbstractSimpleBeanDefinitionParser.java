@@ -26,6 +26,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * 适用于简单的属性处理节点
+ *
  * Convenient base class for when there exists a one-to-one mapping
  * between attribute names on the element that is to be parsed and
  * the property names on the {@link Class} being configured.

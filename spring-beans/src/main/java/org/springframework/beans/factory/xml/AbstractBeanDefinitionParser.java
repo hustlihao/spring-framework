@@ -81,6 +81,7 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 				if (shouldFireEvents()) {
 					BeanComponentDefinition componentDefinition = new BeanComponentDefinition(holder);
 					postProcessComponentDefinition(componentDefinition);
+					// 这里的注册并不是要注册到BeanDefinitionRegistry中 而是将当前BeanDefinition绑定到上一个BeanDefinition的嵌套关系中
 					parserContext.registerComponent(componentDefinition);
 				}
 			}
@@ -122,6 +123,8 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 	}
 
 	/**
+	 * 注册指定的BeanDefinition
+	 *
 	 * Register the supplied {@link BeanDefinitionHolder bean} with the supplied
 	 * {@link BeanDefinitionRegistry registry}.
 	 * <p>Subclasses can override this method to control whether or not the supplied
@@ -141,6 +144,8 @@ public abstract class AbstractBeanDefinitionParser implements BeanDefinitionPars
 
 
 	/**
+	 * 将元素解析成一个或者多个BeanDefinition
+	 * 返回主BeanDefinition
 	 * Central template method to actually parse the supplied {@link Element}
 	 * into one or more {@link BeanDefinition BeanDefinitions}.
 	 * @param element the element that is to be parsed into one or more {@link BeanDefinition BeanDefinitions}

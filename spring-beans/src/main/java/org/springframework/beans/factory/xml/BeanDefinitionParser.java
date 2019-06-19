@@ -42,6 +42,10 @@ import org.springframework.lang.Nullable;
 public interface BeanDefinitionParser {
 
 	/**
+	 * 解析指定元素并注册BeanDefinition，注意解析过程中就需要注册
+	 * 之所以返回了BeanDefinition 主要用于接下来的解析 比如嵌套
+	 * 如果不会被嵌套使用 可以返回null
+	 *
 	 * Parse the specified {@link Element} and register the resulting
 	 * {@link BeanDefinition BeanDefinition(s)} with the
 	 * {@link org.springframework.beans.factory.xml.ParserContext#getRegistry() BeanDefinitionRegistry}

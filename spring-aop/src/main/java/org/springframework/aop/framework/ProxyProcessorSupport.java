@@ -28,6 +28,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 为proxy processors提供通用功能 例如ClassLoader管理和evaluateProxyInterfaces算法
+ *
  * Base class with common functionality for proxy processors, in particular
  * ClassLoader management and the {@link #evaluateProxyInterfaces} algorithm.
  *
